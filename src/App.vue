@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <ul>
-      <remindList
-        v-for="resources in storedResources"
-        :key="resources.id"
-        :title="resources.title"
-        :description="resources.description"
-        :link="resources.link"
-      ></remindList>
-    </ul>
-  </div>
+  <Header />
+  <remindStorage :resources="storedResources"></remindStorage>
 </template>
 
 <script>
-import remindList from '@/components/resources/remindList.vue';
+import remindStorage from '@/components/resources/RemindStorage.vue';
+import Header from '@/components/layouts/Header.vue';
+
 export default {
   components: {
-    remindList
+    remindStorage,
+    Header
   },
   data() {
     return {
@@ -39,4 +33,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
