@@ -1,34 +1,16 @@
 <template>
-  <Header title="Remind Me"></Header>
-  <remindStorage :resources="storedResources"></remindStorage>
+  <the-header title="Remind Me"></the-header>
+  <the-resources></the-resources>
 </template>
 
 <script>
-import remindStorage from '@/components/resources/RemindStorage.vue';
-import Header from '@/components/layouts/Header.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
+import TheResources from './components/learning-resources/TheResources.vue';
 
 export default {
   components: {
-    remindStorage,
-    Header
-  },
-  data() {
-    return {
-      storedResources: [
-        {
-          id: 'official-guide',
-          title: 'Official Guide',
-          description: 'The official Vue.js documentation.',
-          link: 'https://vuejs.org'
-        },
-        {
-          id: 'google',
-          title: 'Google',
-          description: 'Learn to google...',
-          link: 'https://google.org'
-        }
-      ]
-    };
+    TheHeader,
+    TheResources
   }
 };
 </script>
