@@ -1,4 +1,12 @@
 <template>
+  <base-dialog v-if="isInputInvalid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>Please check that no field is left empty</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
@@ -26,8 +34,15 @@
 </template>
 
 <script>
+import BaseDialog from '../UI/BaseDialog.vue';
 export default {
+  components: { BaseDialog },
   inject: ['addResource'],
+  data() {
+    return {
+      isInputInvalid: false
+    };
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
@@ -39,11 +54,14 @@ export default {
         enteredDescription.trim() === '' ||
         enteredUrl.trim() === ''
       ) {
-        alert();
+        this.isInputInvalid = true;
         return;
       }
 
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
+    },
+    confirmError() {
+      this.isInputInvalid = false;
     }
   }
 };
